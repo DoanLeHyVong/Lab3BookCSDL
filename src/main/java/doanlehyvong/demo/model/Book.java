@@ -1,5 +1,6 @@
 package doanlehyvong.demo.model;
 
+import doanlehyvong.demo.validator.annotation.ValidUserId;
 import doanlehyvong.demo.validator.annotation.ValidCategoryId;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
@@ -26,4 +27,9 @@ public class Book {
         @JoinColumn(name = "category_id")
         @ValidCategoryId
         private Category category;
+        @ManyToOne
+        @JoinColumn(name = "user-id",referencedColumnName = "id")
+        @ValidUserId
+        private User user;
+
 }

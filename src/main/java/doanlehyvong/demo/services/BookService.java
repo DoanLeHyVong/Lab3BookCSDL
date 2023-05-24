@@ -30,4 +30,8 @@ public class BookService {
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
+
+    public void updateBook(Long id, String title, String author) {
+    }
 }
+

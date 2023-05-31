@@ -32,16 +32,16 @@ public class UserController {
         @PostMapping("/register")
         public String register (@Valid @ModelAttribute("user") User user,
                                 BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            List<FieldError> errors= bindingResult.getFieldErrors();
-            for (FieldError error: errors) {
-                    model.addAttribute (error.getField() + "_error", error.getDefaultMessage());
-        }
-        return "user/register";
-        }
-        user.setPassword (new
-                BCryptPasswordEncoder().encode (user.getPassword()));
-                userService.save(user);
-                return "redirect:/login";
+            if (bindingResult.hasErrors()) {
+                List<FieldError> errors= bindingResult.getFieldErrors();
+                for (FieldError error: errors) {
+                        model.addAttribute (error.getField() + "_error", error.getDefaultMessage());
+                }
+                return "user/register";
+            }
+            user.setPassword (new
+                    BCryptPasswordEncoder().encode (user.getPassword()));
+                    userService.save(user);
+                    return "redirect:/login";
         }
 }

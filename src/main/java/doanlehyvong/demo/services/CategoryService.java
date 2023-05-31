@@ -1,9 +1,10 @@
 package doanlehyvong.demo.services;
 
-import doanlehyvong.demo.model. Category;
-import doanlehyvong.demo.repository. ICategoryRepository;
+import doanlehyvong.demo.model.Category;
+import doanlehyvong.demo.repository.ICategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework. stereotype.Service;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 @Service
@@ -19,5 +20,12 @@ public class CategoryService {
         }
     }
     public Category saveCategory(Category category) { return categoryRepository.save(category); }
+    public void addCategory(Category category) {
+        categoryRepository.save(category);
+    }
+
+    public void updateCategory(Category category) {
+        categoryRepository.save(category);
+    }
     public void deleteCategory (Long id) { categoryRepository.deleteById(id); }
 }

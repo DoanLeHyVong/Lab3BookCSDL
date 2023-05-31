@@ -34,18 +34,14 @@ public class SecurityConfig {
             Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers( "/css/**", "/js/**", "/", "/register",
-                                "/error")
+                        .requestMatchers( "/css/**", "/js/**", "/", "/register", "/error")
                         .permitAll()
-
                         .requestMatchers( "/books/edit", "/books/delete")
-
-                        .authenticated()
-
+                        .hasAnyAuthority("ADMIN")
                         .requestMatchers("/books", "/books/add")
-
-                        .authenticated()
-
+                        .hasAnyAuthority("ADMIN", "USER")
+                        .requestMatchers("/api/**")
+                        .hasAnyAuthority("ADMIN", "USER")
                         .anyRequest().authenticated()
 
                 )
